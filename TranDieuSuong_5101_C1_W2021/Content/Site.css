@@ -31,3 +31,7 @@ textarea {
 .listitem {
   margin: 10px 0;
 }
+
+.upperCase {
+  text-transform: uppercase;
+}

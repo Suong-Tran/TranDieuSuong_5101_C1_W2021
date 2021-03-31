@@ -14,5 +14,8 @@ namespace TranDieuSuong_5101_C1_W2021.Models
     public string EmployeeNumber;
     public DateTime HireDate;
     public decimal Salary;
+    //These two fields are from the classes table
+    public string ClassCode;
+    public string ClassName;
   }
 }

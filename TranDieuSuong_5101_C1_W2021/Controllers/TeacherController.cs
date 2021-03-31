@@ -16,15 +16,15 @@ namespace TranDieuSuong_5101_C1_W2021.Controllers
       return View();
     }
 
-    //GET : /Author/List
-    public ActionResult List()
+    //GET : /Teacher/List
+    public ActionResult List(string SearchKey = null)
     {
       TeacherDataController controller = new TeacherDataController();
-      IEnumerable<Teacher> Teachers = controller.ListTeachers();
+      IEnumerable<Teacher> Teachers = controller.ListTeachers(SearchKey);
       return View(Teachers);
     }
 
-    //GET : /Author/Show/{id}
+    //GET : /Teacher/Show/{id}
     public ActionResult Show(int id)
     {
       TeacherDataController controller = new TeacherDataController();

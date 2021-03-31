@@ -7,8 +7,15 @@
 
 <h2>List</h2>
 <p>Information about all teachers</p>
+<form action="/Teacher/List" method="GET">
+  <div>
+    <label for="SearchKey">Teacher name:</label>
+    <input type="text" name="SearchKey" autocomplete="off" />
+  </div>
+  <input type="submit" value="Search" />
+  </form>
 
-<div id="containerlist">
+<div>
   <h2>List of Teacher</h2>
   @foreach (var teacher in Model)
   {
