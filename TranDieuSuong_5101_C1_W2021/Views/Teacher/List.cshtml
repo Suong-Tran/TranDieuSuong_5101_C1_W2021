@@ -1,0 +1,19 @@
+﻿@model IEnumerable<TranDieuSuong_5101_C1_W2021.Models.Teacher>
+@{
+  ViewBag.Title = "Teacher";
+}
+
+<h1>Teacher</h1>
+
+<h2>List</h2>
+<p>Information about all teachers</p>
+
+<div id="containerlist">
+  <h2>List of Teacher</h2>
+  @foreach (var teacher in Model)
+  {
+    <div class="listitem row">
+      <div class="col-md-12"><a href="/Teacher/Show/@teacher.TeacherId">@teacher.TeacherFname @teacher.TeacherLname</a></div>
+    </div>
+  }
+</div>
