@@ -1,6 +1,8 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
+    background:black;
+    color:white;
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -18,11 +20,13 @@ textarea {
 
 .navlink {
   text-align: right;
-  margin-top: 30px;
+  margin-top: 20px;
   float: right;
 }
+
 .dellink {
-  color: #dd1111;
+  text-align:left;
+  margin-top: 20px;
   float: left;
 }
 
@@ -38,4 +42,25 @@ textarea {
 
 .upperCase {
   text-transform: uppercase;
+}
+
+.addbutton{
+  display:block;
+  margin-top:20px;
+  background:cyan;
+  color:white;
+  margin-left:48%;
+}
+
+.delbutton {
+  display: block;
+  margin: 0 auto;
+  background: #dd1111;
+  color: #fff;
+  border: 2px solid #000;
+  border-radius: 3px;
+}
+
+.black{
+  color:black;
 }

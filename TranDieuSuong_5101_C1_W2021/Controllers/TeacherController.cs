@@ -75,9 +75,10 @@ namespace TranDieuSuong_5101_C1_W2021.Controllers
       //Identify that this method is running
       //Identify the inputs provided from the form
 
-      Debug.WriteLine("I have accessed the Create Method!");
-      Debug.WriteLine(TeacherFname);
-      Debug.WriteLine(TeacherLname);
+      if (string.IsNullOrEmpty(TeacherFname))
+      {
+        Debug.WriteLine("No no");
+      }
 
       Teacher NewTeacher = new Teacher();
       NewTeacher.TeacherFname = TeacherFname;
