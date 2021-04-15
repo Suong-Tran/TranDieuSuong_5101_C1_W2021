@@ -7,6 +7,8 @@ using System.Web.Http;
 using BlogProject.Models;
 using MySql.Data.MySqlClient;
 using TranDieuSuong_5101_C1_W2021.Models;
+using System.Diagnostics;
+
 
 namespace TranDieuSuong_5101_C1_W2021.Controllers
 {
@@ -32,7 +34,7 @@ namespace TranDieuSuong_5101_C1_W2021.Controllers
 
         MySqlCommand cmd = Conn.CreateCommand();
 
-        cmd.CommandText = "Select *,classcode,classname from Teachers join classes on teachers.teacherid = classes.teacherid " +
+        cmd.CommandText = "Select * from Teachers " +
         "where lower(teacherfname) like lower(@key) or lower(teacherlname) like lower(@key) " +
         "or lower(concat(teacherfname, ' ', teacherlname)) like lower(@key)";
 
@@ -52,8 +54,6 @@ namespace TranDieuSuong_5101_C1_W2021.Controllers
             string EmployeeNumber = ResultSet["employeenumber"].ToString();
             DateTime HireDate = Convert.ToDateTime(ResultSet["hiredate"].ToString());
             decimal Salary = (decimal)ResultSet["salary"];
-            string ClassCode = ResultSet["classcode"].ToString();
-            string ClassName = ResultSet["classname"].ToString();
 
 
             Teacher NewTeacher = new Teacher();
@@ -63,8 +63,6 @@ namespace TranDieuSuong_5101_C1_W2021.Controllers
             NewTeacher.EmployeeNumber = EmployeeNumber;
             NewTeacher.HireDate = HireDate;
             NewTeacher.Salary = Salary;
-            NewTeacher.ClassCode = ClassCode;
-            NewTeacher.ClassName = ClassName;
 
 
             //Add the Author Name to the List
@@ -91,7 +89,7 @@ namespace TranDieuSuong_5101_C1_W2021.Controllers
 
         MySqlCommand cmd = Conn.CreateCommand();
 
-        cmd.CommandText = "Select *,classcode,classname from Teachers join classes on teachers.teacherid = classes.teacherid where teachers.teacherid = " + id;
+        cmd.CommandText = "Select * from Teachers where teacherid = " + id;
 
         //Gather Result Set of Query into a variable
         MySqlDataReader ResultSet = cmd.ExecuteReader();
@@ -105,8 +103,6 @@ namespace TranDieuSuong_5101_C1_W2021.Controllers
           string EmployeeNumber = ResultSet["employeenumber"].ToString();
           DateTime HireDate = Convert.ToDateTime(ResultSet["hiredate"].ToString());
           decimal Salary = (decimal)ResultSet["salary"];
-          string ClassCode = ResultSet["classcode"].ToString();
-          string ClassName = ResultSet["classname"].ToString();
 
           NewTeacher.TeacherId = TeacherId;
           NewTeacher.TeacherFname = TeacherFname;
@@ -114,13 +110,64 @@ namespace TranDieuSuong_5101_C1_W2021.Controllers
           NewTeacher.EmployeeNumber = EmployeeNumber;
           NewTeacher.HireDate = HireDate;
           NewTeacher.Salary = Salary;
-          NewTeacher.ClassCode = ClassCode;
-          NewTeacher.ClassName = ClassName;
         }
 
 
         return NewTeacher;
       }
+
+    [HttpPost]
+    public void DeleteTeacher(int id)
+    {
+      //Create an instance of a connection
+      MySqlConnection Conn = School.AccessDatabase();
+
+      //Open the connection between the web server and database
+      Conn.Open();
+
+      //Establish a new command (query) for our database
+      MySqlCommand cmd = Conn.CreateCommand();
+
+      //SQL QUERY
+      cmd.CommandText = "Delete from teachers where teacherid=@id";
+      cmd.Parameters.AddWithValue("@id", id);
+      cmd.Prepare();
+
+      cmd.ExecuteNonQuery();
+
+      Conn.Close();
+    }
+
+    [HttpPost]
+    public void AddTeacher([FromBody] Teacher NewTeacher)
+    {
+      //Create an instance of a connection
+      MySqlConnection Conn = School.AccessDatabase();
+
+      Debug.WriteLine(NewTeacher.TeacherFname);
+
+      //Open the connection between the web server and database
+      Conn.Open();
+
+      //Establish a new command (query) for our database
+      MySqlCommand cmd = Conn.CreateCommand();
+
+      //SQL QUERY
+      cmd.CommandText = "insert into teachers (teacherfname, teacherlname, employeenumber, hiredate, salary) values (@TeacherFname,@TeacherLname,@EmployeeNumber, CURRENT_DATE(), @Salary)";
+      cmd.Parameters.AddWithValue("@TeacherFname", NewTeacher.TeacherFname);
+      cmd.Parameters.AddWithValue("@TeacherLname", NewTeacher.TeacherLname);
+      cmd.Parameters.AddWithValue("@EmployeeNumber", NewTeacher.EmployeeNumber);
+      cmd.Parameters.AddWithValue("@HireDate", NewTeacher.HireDate);
+      cmd.Parameters.AddWithValue("@Salary", NewTeacher.Salary);
+      cmd.Prepare();
+
+      cmd.ExecuteNonQuery();
+
+      Conn.Close();
+
+
+
+    }
 
   }
 }

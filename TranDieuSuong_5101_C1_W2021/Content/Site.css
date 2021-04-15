@@ -21,6 +21,10 @@ textarea {
   margin-top: 30px;
   float: right;
 }
+.dellink {
+  color: #dd1111;
+  float: left;
+}
 
 #containerlist, #containershow {
   width: 80%;
