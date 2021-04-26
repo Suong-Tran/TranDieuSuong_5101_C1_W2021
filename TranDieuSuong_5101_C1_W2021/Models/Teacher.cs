@@ -14,5 +14,7 @@ namespace TranDieuSuong_5101_C1_W2021.Models
     public string EmployeeNumber;
     public DateTime HireDate;
     public decimal Salary;
+
+    public Teacher() { }
   }
 }

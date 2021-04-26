@@ -24,6 +24,12 @@ textarea {
   float: right;
 }
 
+.updatelink{
+  border: 1px solid red;
+  width:100%;
+  text-align:center;
+}
+
 .dellink {
   text-align:left;
   margin-top: 20px;
@@ -51,16 +57,23 @@ textarea {
   color:white;
   margin-left:48%;
 }
+.searchbutton {
+  display: block;
+  margin-top: 20px;
+  background: cyan;
+  color: white;
+}
 
 .delbutton {
   display: block;
   margin: 0 auto;
-  background: #dd1111;
+  background:cyan;
   color: #fff;
   border: 2px solid #000;
   border-radius: 3px;
 }
 
-.black{
+.inputrow input{
   color:black;
 }
+

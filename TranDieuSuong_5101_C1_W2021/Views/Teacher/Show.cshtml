@@ -5,10 +5,12 @@
 
 <a class="navlink" href="/Teacher/List">Back To Teachers</a>
 <a class="dellink" href="/Teacher/DeleteConfirm/@Model.TeacherId">Delete</a>
+
 <div id="containershow">
   <h2>@Model.TeacherFname @Model.TeacherLname</h2>
   <p>Employee Number: @Model.EmployeeNumber</p>
   <p>Hire date: @Model.HireDate.ToString("dd-MMM-yyyy")</p>
   <p>Salary: $@Model.Salary</p>
 </div>
+<div classs="updatelink"><a href="/Teacher/Update/@Model.TeacherId">Update</a></div>
 
