@@ -178,7 +178,13 @@ namespace TranDieuSuong_5101_C1_W2021.Controllers
       Conn.Close();
     }
 
-
+    /// <summary>
+    /// Update information about a teacher to the database
+    /// </summary>
+    /// <param name="id">the id of the teacher</param>
+    /// <param name="TeacherInfo">An object with fields that map to the columns of the teacher's table.</param>
+    /// <example>POST api/TeacherData/UpdateTeacher/2 </example>
+    /// 
     [HttpPost]
     [EnableCors(origins: "*", methods: "*", headers: "*")]
     public void UpdateTeacher(int id, [FromBody] Teacher TeacherInfo)

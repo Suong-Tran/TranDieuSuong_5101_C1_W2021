@@ -89,6 +89,12 @@ namespace TranDieuSuong_5101_C1_W2021.Controllers
       return RedirectToAction("List");
     }
 
+    /// <summary>
+    /// Go to the dynamic page "Update Teacher" then gather info from the database
+    /// </summary>
+    /// <param name="id">Id of the teacher</param>
+    /// <returns>provides the current information of the teacher and asks the user to alter the information as part of a form.</returns>
+    /// <example>GET : /Teacher/Update/5</example>
     public ActionResult Update(int id)
     {
       TeacherDataController controller = new TeacherDataController();
@@ -105,6 +111,17 @@ namespace TranDieuSuong_5101_C1_W2021.Controllers
       return View(SelectedTeacher);
     }
 
+    /// <summary>
+    /// Conveys the newly altered information receiving from the post request to the API,
+    /// and redirects to the "Author Show" page of the updated teacher.
+    /// </summary>
+    /// <param name="id">teacher id</param>
+    /// <param name="TeacherFname">teacher first name</param>
+    /// <param name="TeacherLname">teacher last name</param>
+    /// <param name="EmployeeNumber">teacher employee number</param>
+    /// <param name="HireDate">teacher date of hiring</param>
+    /// <param name="Salary">teacher salary</param>
+    /// <returns>a page with info about the current teacher</returns>
     [HttpPost]
     public ActionResult Update(int id, string TeacherFname, string TeacherLname, string EmployeeNumber, string HireDate, decimal Salary)
     {
